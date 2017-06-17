@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import InputText from "../../components/InputText";
-import InputSubmit from "../../components/InputSubmit";
+import InputText from "../components/InputText";
+import InputSubmit from "../components/InputSubmit";
 import PubSub from "pubsub-js";
 
 export class FormAutor extends Component {
