@@ -5,7 +5,7 @@ export default class InputSubmit extends Component {
         return (
             <div className="pure-control-group">
                 <label></label>
-                <button type={this.props.type} className={this.props.className}>{this.props.label}</button>
+                <button type="submit" className="pure-button pure-button-primary">{this.props.label}</button>
             </div>
         );
     }
