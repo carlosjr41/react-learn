@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import InputText from "../../components/InputText";
 import InputSubmit from "../../components/InputSubmit";
+import PubSub from "pubsub-js";
 
 export class FormAutor extends Component {
     constructor() {
@@ -16,8 +17,8 @@ export class FormAutor extends Component {
             method: "post",
             body: JSON.stringify({ nome: this.state.nome, email: this.state.email, senha: this.state.senha })
         })
-            .then(res => res.json())
-            .then(res => this.props.callbackLista(res.slice(res.length - 5, res.length)))
+            .then(response => response.json())
+            .then(novaLista => PubSub.publish('nova-lista-autores',novaLista))
             .catch(error => console.log(error));
     }
 
