@@ -5,10 +5,6 @@ import {AutorBox} from "./view/autor/AutorBox";
 
 class App extends Component {
 
-  constructor() {
-    super();
-    
-  }
   
   render() {
 

@@ -12,14 +12,29 @@ export class FormAutor extends Component {
     enviaForm = (evento) => {
         evento.preventDefault();
 
+        PubSub.publish("limpa-erros");
+        
+
         fetch("https://cdc-react.herokuapp.com/api/autores", {
             headers: { 'Content-type': "application/json" },
             method: "post",
             body: JSON.stringify({ nome: this.state.nome, email: this.state.email, senha: this.state.senha })
         })
-            .then(response => response.json())
-            .then(novaLista => PubSub.publish('nova-lista-autores',novaLista))
-            .catch(error => console.log(error));
+            .then(response => {
+                let json = response.json();
+                if (response.ok)
+                    return json;
+                else {
+                    return json.then(error => { throw error; });
+                    //throw new Error(response.statusText);
+                }
+
+            })
+            .then(novaLista => {
+                this.limpaFormulario();
+                PubSub.publish('nova-lista-autores', novaLista)
+            })
+            .catch(error => { PubSub.publish('erro-validacao', error.errors); });
     }
 
     setNome = (evento) => {
@@ -33,6 +48,12 @@ export class FormAutor extends Component {
     setSenha = (evento) => {
         this.setState({ senha: evento.target.value });
     }
+
+    limpaFormulario(){
+        this.setState({ nome: '', email: '', senha: '' });
+    }
+
+
 
     render() {
         return (
