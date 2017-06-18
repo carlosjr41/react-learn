@@ -11,7 +11,7 @@ export default class InputText extends Component {
     componentDidMount() {
         PubSub.subscribe("erro-validacao", (topico, erros) => {
             erros.forEach(erro => {
-                if (this.props.name == erro.field) {
+                if (this.props.name === erro.field) {
                     this.setState({ msgErro: erro.defaultMessage });
                 }
             });
