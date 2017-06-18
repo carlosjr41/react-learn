@@ -11,6 +11,7 @@ export class AutorBox extends Component {
     }
 
     componentDidMount() {
+        console.log("aqui AutorBox");
         fetch("https://cdc-react.herokuapp.com/api/autores")
             .then(res => res.json())
             .then(res => this.setState({ lista: res }));
@@ -25,10 +26,15 @@ export class AutorBox extends Component {
 
     render() {
         return (
-            <div className="content" id="content">
-                <FormAutor />
-                <TabAutores lista={this.state.lista.slice(this.state.lista.length -5,this.state.lista.length )} />
+            <div>
+                <div className="header">
+                    <h1>Cadastro de Autores</h1>
+                </div>
+                <div className="content" id="content">
+                    <FormAutor />
+                    <TabAutores lista={this.state.lista.slice(this.state.lista.length -5,this.state.lista.length )} />
 
+                </div>
             </div>
         );
     }

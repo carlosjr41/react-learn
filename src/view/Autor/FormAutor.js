@@ -12,7 +12,7 @@ export class FormAutor extends Component {
     enviaForm = (evento) => {
         evento.preventDefault();
 
-        PubSub.publish("limpa-erros");
+        
         
 
         fetch("https://cdc-react.herokuapp.com/api/autores", {
@@ -22,6 +22,9 @@ export class FormAutor extends Component {
         })
             .then(response => {
                 let json = response.json();
+
+                PubSub.publish("limpa-erros");
+
                 if (response.ok)
                     return json;
                 else {
