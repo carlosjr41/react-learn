@@ -12,9 +12,6 @@ export class FormAutor extends Component {
     enviaForm = (evento) => {
         evento.preventDefault();
 
-        
-        
-
         fetch("https://cdc-react.herokuapp.com/api/autores", {
             headers: { 'Content-type': "application/json" },
             method: "post",
