@@ -11,7 +11,6 @@ export class AutorBox extends Component {
     }
 
     componentDidMount() {
-        console.log("aqui AutorBox");
         fetch("https://cdc-react.herokuapp.com/api/autores")
             .then(res => res.json())
             .then(res => this.setState({ lista: res }));
