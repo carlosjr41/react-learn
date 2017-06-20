@@ -9,10 +9,6 @@ export class FormLivro extends Component {
         this.state = { titulo: '', preco: '', autorId: '' }
     }
 
-    componentWillMount(){
-        console.log(this.state);
-    }
-
     render() {
         return (
             <div className="pure-form pure-form-aligned">
@@ -25,7 +21,7 @@ export class FormLivro extends Component {
                             <option value="">Selecione o Autor</option>
                             {
                                 this.props.autores.map((autor) => {
-                                    return <option value={autor.id}>{autor.nome}</option>
+                                    return <option key={autor.id} value={autor.id}>{autor.nome}</option>
                                 })
                             }
                         </select>
